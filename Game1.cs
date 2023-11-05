@@ -36,7 +36,7 @@ namespace Lodestone {
 
         protected override void LoadContent() {
             bush = Content.Load<Texture2D>("Graphics/World/Bush");
-            player = new Player(new Vector2(100, 50), Content.Load<Texture2D>("Graphics/Player/Player"), new Rectangle(0, 0, 64, 64), 60, 0.15f);
+            player = new Player(new Vector2(100, 50), Content.Load<Texture2D>("Graphics/Player/Player"), new Rectangle(0, 0, 64, 64), 60, 0.15f, 400f, 66f);
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
         }
@@ -52,23 +52,24 @@ namespace Lodestone {
         }
 
         protected override void Draw(GameTime gameTime) {
+            /*
             // First, draw to the RenderTarget
             GraphicsDevice.SetRenderTarget(gameWindow);
             GraphicsDevice.Clear(new Color(80, 80, 80));
             
             spriteBatch.Begin();
-            spriteBatch.Draw(bush, new Vector2(20, 20), Color.White);
-            player.Draw(gameTime, spriteBatch);
             spriteBatch.End();
-
             GraphicsDevice.SetRenderTarget(null);
+            */
 
             // Then draw the RenderTarget to the screen scaled up
             GraphicsDevice.Clear(Color.Black);
             
             // Setting PointClamp here keeps the pixel art from scaling blurry
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-            spriteBatch.Draw(gameWindow, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 4, SpriteEffects.None, 0f);
+            spriteBatch.Draw(bush, new Vector2(20, 20), null, Color.White, 0f, Vector2.Zero, 4f, SpriteEffects.None, 0f);
+            player.Draw(gameTime, spriteBatch);
+            //spriteBatch.Draw(gameWindow, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 4, SpriteEffects.None, 0f);
             spriteBatch.End();
 
             base.Draw(gameTime);
